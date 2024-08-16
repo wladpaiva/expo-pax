@@ -1,26 +1,21 @@
-import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-core';
+import ExpoPaxModule from "./ExpoPaxModule";
 
-// Import the native module. On web, it will be resolved to ExpoPax.web.ts
-// and on native platforms to ExpoPax.ts
-import ExpoPaxModule from './ExpoPaxModule';
-import ExpoPaxView from './ExpoPaxView';
-import { ChangeEventPayload, ExpoPaxViewProps } from './ExpoPax.types';
-
-// Get the native constant value.
-export const PI = ExpoPaxModule.PI;
-
-export function hello(): string {
-  return ExpoPaxModule.hello();
+export function getTheme(): string {
+  return ExpoPaxModule.getTheme();
 }
 
-export async function setValueAsync(value: string) {
-  return await ExpoPaxModule.setValueAsync(value);
-}
+// import { NativeModules } from "react-native";
 
-const emitter = new EventEmitter(ExpoPaxModule ?? NativeModulesProxy.ExpoPax);
+// const { Pax } = NativeModules;
 
-export function addChangeListener(listener: (event: ChangeEventPayload) => void): Subscription {
-  return emitter.addListener<ChangeEventPayload>('onChange', listener);
-}
+// export default {
+//   FULL_CUT: 0,
+//   PARTIAL_CUT: 1,
 
-export { ExpoPaxView, ExpoPaxViewProps, ChangeEventPayload };
+//   printStr(text, cutMode) {
+//     Pax.printStr(text, cutMode === undefined ? 0 : cutMode);
+//   },
+//   openDrawer() {
+//     return Pax.openDrawer();
+//   },
+// };

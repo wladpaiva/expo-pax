@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 
-import * as ExpoPax from 'expo-pax';
+import * as ExpoPax from "expo-pax";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{ExpoPax.hello()}</Text>
+      <Text>{ExpoPax.getTheme()}</Text>
     </View>
   );
 }
@@ -13,8 +13,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
