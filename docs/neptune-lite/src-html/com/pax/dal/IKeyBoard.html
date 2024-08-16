@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet_en.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
+<span class="sourceLineNo">002</span> * ===========================================================================================<a name="line.2"></a>
+<span class="sourceLineNo">003</span> * = COPYRIGHT<a name="line.3"></a>
+<span class="sourceLineNo">004</span> *          PAX Computer Technology (Shenzhen) Co., Ltd. PROPRIETARY INFORMATION<a name="line.4"></a>
+<span class="sourceLineNo">005</span> *   This software is supplied under the terms of a license agreement or nondisclosure<a name="line.5"></a>
+<span class="sourceLineNo">006</span> *   agreement with PAX Computer Technology (Shenzhen) Co., Ltd. and may not be copied or<a name="line.6"></a>
+<span class="sourceLineNo">007</span> *   disclosed except in accordance with the terms in that agreement.<a name="line.7"></a>
+<span class="sourceLineNo">008</span> *     Copyright (C) 2017-2023 PAX Computer Technology (Shenzhen) Co., Ltd. All rights reserved.<a name="line.8"></a>
+<span class="sourceLineNo">009</span> * Description: // Detail description about the function of this module,<a name="line.9"></a>
+<span class="sourceLineNo">010</span> *             // interfaces with the other modules, and dependencies.<a name="line.10"></a>
+<span class="sourceLineNo">011</span> * Revision History:<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * Date                         Author                        Action<a name="line.12"></a>
+<span class="sourceLineNo">013</span> * 2017/04/01                   PAX                     Create/Add/Modify/Delete<a name="line.13"></a>
+<span class="sourceLineNo">014</span> * ===========================================================================================<a name="line.14"></a>
+<span class="sourceLineNo">015</span> */<a name="line.15"></a>
+<span class="sourceLineNo">016</span> <a name="line.16"></a>
+<span class="sourceLineNo">017</span>package com.pax.dal;<a name="line.17"></a>
+<span class="sourceLineNo">018</span><a name="line.18"></a>
+<span class="sourceLineNo">019</span>import com.pax.dal.entity.EKeyCode;<a name="line.19"></a>
+<span class="sourceLineNo">020</span><a name="line.20"></a>
+<span class="sourceLineNo">021</span>public interface IKeyBoard {<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    /**<a name="line.22"></a>
+<span class="sourceLineNo">023</span>     * @deprecated<a name="line.23"></a>
+<span class="sourceLineNo">024</span>     * &lt;div class="zh"&gt; 检测键盘缓冲区中是否有尚未被取走的按键值 &lt;/div&gt; &lt;div class="en"&gt; Check whether there are unread key values in<a name="line.24"></a>
+<span class="sourceLineNo">025</span>     * keyboard buffer. &lt;/div&gt;<a name="line.25"></a>
+<span class="sourceLineNo">026</span>     * <a name="line.26"></a>
+<span class="sourceLineNo">027</span>     * @return &lt;div class="zh"&gt;<a name="line.27"></a>
+<span class="sourceLineNo">028</span>     *         &lt;ul&gt;<a name="line.28"></a>
+<span class="sourceLineNo">029</span>     *         &lt;li&gt;true -- 键盘缓存区中仍然有键值&lt;/li&gt;<a name="line.29"></a>
+<span class="sourceLineNo">030</span>     *         &lt;li&gt;false -- 键盘缓存区中无键值&lt;/li&gt;<a name="line.30"></a>
+<span class="sourceLineNo">031</span>     *         &lt;/ul&gt;<a name="line.31"></a>
+<span class="sourceLineNo">032</span>     *         &lt;/div&gt; &lt;div class="en"&gt;<a name="line.32"></a>
+<span class="sourceLineNo">033</span>     *         &lt;ul&gt;<a name="line.33"></a>
+<span class="sourceLineNo">034</span>     *         &lt;li&gt;true -- There are still key values in buffer&lt;/li&gt;<a name="line.34"></a>
+<span class="sourceLineNo">035</span>     *         &lt;li&gt;false -- No key values in buffer&lt;/li&gt;<a name="line.35"></a>
+<span class="sourceLineNo">036</span>     *         &lt;/ul&gt;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>     *         &lt;/div&gt;<a name="line.37"></a>
+<span class="sourceLineNo">038</span>     * <a name="line.38"></a>
+<span class="sourceLineNo">039</span>     */<a name="line.39"></a>
+<span class="sourceLineNo">040</span>    @Deprecated<a name="line.40"></a>
+<span class="sourceLineNo">041</span>    public boolean isHit();<a name="line.41"></a>
+<span class="sourceLineNo">042</span><a name="line.42"></a>
+<span class="sourceLineNo">043</span>    /**<a name="line.43"></a>
+<span class="sourceLineNo">044</span>     * @deprecated<a name="line.44"></a>
+<span class="sourceLineNo">045</span>     * &lt;div class="zh"&gt; 清除当前键盘缓冲区中的所有未读取的按键 &lt;/div&gt; &lt;div class="en"&gt; Clear all the key values which have not been read in<a name="line.45"></a>
+<span class="sourceLineNo">046</span>     * current keyboard buffer. &lt;/div&gt;<a name="line.46"></a>
+<span class="sourceLineNo">047</span>     */<a name="line.47"></a>
+<span class="sourceLineNo">048</span>    @Deprecated<a name="line.48"></a>
+<span class="sourceLineNo">049</span>    public void clear();<a name="line.49"></a>
+<span class="sourceLineNo">050</span><a name="line.50"></a>
+<span class="sourceLineNo">051</span>    /**<a name="line.51"></a>
+<span class="sourceLineNo">052</span>     * @deprecated<a name="line.52"></a>
+<span class="sourceLineNo">053</span>     * &lt;div class="zh"&gt; 读取键盘缓冲区中最早输入的一个键值。如果缓冲区为空，则等待按键输入 &lt;/div&gt; &lt;div class="en"&gt; Read the first input key value<a name="line.53"></a>
+<span class="sourceLineNo">054</span>     * from keyboard buffer. If the buffer is NULL, then waiting for the key pressing. &lt;/div&gt;<a name="line.54"></a>
+<span class="sourceLineNo">055</span>     * <a name="line.55"></a>
+<span class="sourceLineNo">056</span>     * @return {@link EKeyCode}<a name="line.56"></a>
+<span class="sourceLineNo">057</span>     */<a name="line.57"></a>
+<span class="sourceLineNo">058</span>    @Deprecated<a name="line.58"></a>
+<span class="sourceLineNo">059</span>    public EKeyCode getKey();<a name="line.59"></a>
+<span class="sourceLineNo">060</span><a name="line.60"></a>
+<span class="sourceLineNo">061</span>    /**<a name="line.61"></a>
+<span class="sourceLineNo">062</span>     * @deprecated<a name="line.62"></a>
+<span class="sourceLineNo">063</span>     * &lt;div class="zh"&gt; 设置按键板在按键时是否发声 &lt;/div&gt; &lt;div class="en"&gt; Set whether the keypad should make a sound when the key is<a name="line.63"></a>
+<span class="sourceLineNo">064</span>     * being pressed. &lt;/div&gt;<a name="line.64"></a>
+<span class="sourceLineNo">065</span>     * <a name="line.65"></a>
+<span class="sourceLineNo">066</span>     * @param isMute<a name="line.66"></a>
+<span class="sourceLineNo">067</span>     *            &lt;div class="zh"&gt;<a name="line.67"></a>
+<span class="sourceLineNo">068</span>     *            &lt;ul&gt;<a name="line.68"></a>
+<span class="sourceLineNo">069</span>     *            &lt;li&gt;true-不发声&lt;/li&gt;<a name="line.69"></a>
+<span class="sourceLineNo">070</span>     *            &lt;li&gt;false-发声&lt;/li&gt;<a name="line.70"></a>
+<span class="sourceLineNo">071</span>     *            &lt;/ul&gt;<a name="line.71"></a>
+<span class="sourceLineNo">072</span>     *            &lt;/div&gt; &lt;div class="en"&gt;<a name="line.72"></a>
+<span class="sourceLineNo">073</span>     *            &lt;ul&gt;<a name="line.73"></a>
+<span class="sourceLineNo">074</span>     *            &lt;li&gt;true -- Mute&lt;/li&gt;<a name="line.74"></a>
+<span class="sourceLineNo">075</span>     *            &lt;li&gt;false -- make a sound&lt;/li&gt;<a name="line.75"></a>
+<span class="sourceLineNo">076</span>     *            &lt;/ul&gt;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>     *            &lt;/div&gt;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>     * <a name="line.78"></a>
+<span class="sourceLineNo">079</span>     */<a name="line.79"></a>
+<span class="sourceLineNo">080</span>    @Deprecated<a name="line.80"></a>
+<span class="sourceLineNo">081</span>    public void setMute(boolean isMute);<a name="line.81"></a>
+<span class="sourceLineNo">082</span>    <a name="line.82"></a>
+<span class="sourceLineNo">083</span>    /**<a name="line.83"></a>
+<span class="sourceLineNo">084</span>     * &lt;div class="zh"&gt;设置按键背光。&lt;/div&gt; &lt;div class="en"&gt;Set keyboard backlight.&lt;/div&gt;<a name="line.84"></a>
+<span class="sourceLineNo">085</span>     *<a name="line.85"></a>
+<span class="sourceLineNo">086</span>     * @param mode   &lt;div class="zh"&gt;<a name="line.86"></a>
+<span class="sourceLineNo">087</span>     *                  &lt;ul&gt;<a name="line.87"></a>
+<span class="sourceLineNo">088</span>     *                     &lt;li&gt;0:关闭背光。&lt;/li&gt;<a name="line.88"></a>
+<span class="sourceLineNo">089</span>     *                     &lt;li&gt;1:默认模式。背光保持亮1分钟，1分钟后自动关闭。&lt;/li&gt;<a name="line.89"></a>
+<span class="sourceLineNo">090</span>     *                     &lt;li&gt;2:背光常亮。&lt;/li&gt;<a name="line.90"></a>
+<span class="sourceLineNo">091</span>     *                     &lt;li&gt;3:背光常暗。不会被刷卡，插卡，按键等事件激活背光。&lt;/li&gt;<a name="line.91"></a>
+<span class="sourceLineNo">092</span>     *                  &lt;/ul&gt;<a name="line.92"></a>
+<span class="sourceLineNo">093</span>     *               &lt;/div&gt;<a name="line.93"></a>
+<span class="sourceLineNo">094</span>     *               &lt;div class="en"&gt;<a name="line.94"></a>
+<span class="sourceLineNo">095</span>     *                  &lt;ul&gt;<a name="line.95"></a>
+<span class="sourceLineNo">096</span>     *                     &lt;li&gt;0:Turn off the backlight.&lt;/li&gt;<a name="line.96"></a>
+<span class="sourceLineNo">097</span>     *                     &lt;li&gt;1:Default mode.Keep the backlight on for 1 minute, then turn it off automatically after 1 minute.&lt;/li&gt;<a name="line.97"></a>
+<span class="sourceLineNo">098</span>     *                     &lt;li&gt;2:The backlight is always bright.&lt;/li&gt;<a name="line.98"></a>
+<span class="sourceLineNo">099</span>     *                     &lt;li&gt;3:The backlight is always dark.Backlight will not be activated by card swiping, card inserting, keystrokes, etc.&lt;/li&gt;<a name="line.99"></a>
+<span class="sourceLineNo">100</span>     *                  &lt;/ul&gt;<a name="line.100"></a>
+<span class="sourceLineNo">101</span>     *               &lt;/div&gt;<a name="line.101"></a>
+<span class="sourceLineNo">102</span>     * @param volume &lt;div class="zh"&gt;范围是1~3。默认3最亮。&lt;/div&gt; &lt;div class="en"&gt;The range is 1 to 3.Default 3 is brightest.&lt;/div&gt;<a name="line.102"></a>
+<span class="sourceLineNo">103</span>     * @throws Exception<a name="line.103"></a>
+<span class="sourceLineNo">104</span>     * @since V3.19.00<a name="line.104"></a>
+<span class="sourceLineNo">105</span>     */<a name="line.105"></a>
+<span class="sourceLineNo">106</span>    void setLight(byte mode, byte volume) throws Exception;<a name="line.106"></a>
+<span class="sourceLineNo">107</span><a name="line.107"></a>
+<span class="sourceLineNo">108</span>    /**<a name="line.108"></a>
+<span class="sourceLineNo">109</span>     * @deprecated<a name="line.109"></a>
+<span class="sourceLineNo">110</span>     * &lt;div class="zh"&gt;设置键盘按键音量值。&lt;/div&gt; &lt;div class="en"&gt;Set keyboard key volume value.&lt;/div&gt;<a name="line.110"></a>
+<span class="sourceLineNo">111</span>     *<a name="line.111"></a>
+<span class="sourceLineNo">112</span>     * @param volumes   &lt;div class="zh"&gt;音量值（0~50）&lt;/div&gt;<a name="line.112"></a>
+<span class="sourceLineNo">113</span>     *               &lt;div class="en"&gt;Volume value (0~50)&lt;/div&gt;<a name="line.113"></a>
+<span class="sourceLineNo">114</span>     * @throws Exception<a name="line.114"></a>
+<span class="sourceLineNo">115</span>     * @since V3.29.00<a name="line.115"></a>
+<span class="sourceLineNo">116</span>     */<a name="line.116"></a>
+<span class="sourceLineNo">117</span>    void setVolume(int volumes) throws Exception;<a name="line.117"></a>
+<span class="sourceLineNo">118</span>}<a name="line.118"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>
