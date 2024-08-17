@@ -1,6 +1,6 @@
 {
   "name": "expo-pax",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Expo module that allows native features of a Pax Technology Android devices",
   "main": "build/index.js",
   "types": "build/index.d.ts",
