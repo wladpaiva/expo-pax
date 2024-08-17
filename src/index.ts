@@ -1,21 +1,9 @@
 import ExpoPaxModule from "./ExpoPaxModule";
 
-export function getTheme(): string {
-  return ExpoPaxModule.getTheme();
+// Define cut modes as constants
+export const FULL_CUT = 0;
+export const PARTIAL_CUT = 1;
+
+export function printStr(text: string, cutMode: number = FULL_CUT): void {
+  ExpoPaxModule.printStr(text, cutMode);
 }
-
-// import { NativeModules } from "react-native";
-
-// const { Pax } = NativeModules;
-
-// export default {
-//   FULL_CUT: 0,
-//   PARTIAL_CUT: 1,
-
-//   printStr(text, cutMode) {
-//     Pax.printStr(text, cutMode === undefined ? 0 : cutMode);
-//   },
-//   openDrawer() {
-//     return Pax.openDrawer();
-//   },
-// };
