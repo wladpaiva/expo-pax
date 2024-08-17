@@ -19,7 +19,9 @@
     "react-native",
     "expo",
     "expo-pax",
-    "ExpoPax"
+    "ExpoPax",
+    "pax",
+    "android"
   ],
   "repository": "https://github.com/wladpaiva/expo-pax",
   "bugs": {
