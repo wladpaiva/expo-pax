@@ -22,7 +22,6 @@ class ExpoPaxModule : Module() {
       try {
           dal = NeptuneLiteUser.getInstance().getDal(reactContext)
           printer = dal?.getPrinter()
-          cashDrawer = dal?.getCashDrawer()
       } catch (e: Exception) {
           e.printStackTrace()
       }
