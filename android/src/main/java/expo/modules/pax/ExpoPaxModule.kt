@@ -1,10 +1,9 @@
 package expo.modules.pax
 
-import com.pax.dal.IDAL
-import com.pax.dal.IPrinter
-import com.pax.dal.entity.EFontTypeAscii
-import com.pax.dal.entity.EFontTypeExtCode
-import com.pax.neptunelite.api.NeptuneLiteUser
+import android.util.Log
+import com.pax.dal.IDAL;
+import com.pax.dal.IPrinter;
+import com.pax.neptunelite.api.NeptuneLiteUser;
 import android.content.Context
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
@@ -17,27 +16,36 @@ class ExpoPaxModule : Module() {
     Name("ExpoPax")
 
     OnCreate {
+      Log.d("ExpoPax", "onCreate called")
+      val reactContext = appContext.reactContext as Context
+
       try {
-        dal = NeptuneLiteUser.getInstance().getDal(appContext.reactContext as Context)
-        printer = dal?.getPrinter()
+          dal = NeptuneLiteUser.getInstance().getDal(reactContext)
+          printer = dal?.getPrinter()
+          cashDrawer = dal?.getCashDrawer()
       } catch (e: Exception) {
-        e.printStackTrace()
-        // Log the error or handle it appropriately
+          e.printStackTrace()
       }
     }
 
     Function("printStr") { text: String, cutMode: Int ->
+      Log.d("ExpoPax", "printStr called with text: $text, cutMode: $cutMode")
       try {
+        if (printer == null) {
+          Log.e("ExpoPax", "Printer not initialized")
+          throw Exception("Printer not initialized")
+        }
         printer?.let { p ->
           p.init()
           p.setGray(3)
           p.printStr(text, null)
           p.start()
           p.cutPaper(cutMode)
-        } ?: throw Exception("Printer not initialized")
+          Log.d("ExpoPax", "printStr finished successfully")
+        }
       } catch (e: Exception) {
-        e.printStackTrace()
-        throw e // Re-throw the exception to be handled by the JavaScript side
+        Log.e("ExpoPax", "Error in printStr", e)
+        throw e
       }
     }
   }

@@ -1,8 +1,6 @@
 {
-  "platforms": ["android", "ios"],
-  "ios": {
-    "modules": ["ExpoPaxModule"]
-  },
+  "name": "expo-pax",
+  "platforms": ["android"],
   "android": {
     "modules": ["expo.modules.pax.ExpoPaxModule"]
   }
